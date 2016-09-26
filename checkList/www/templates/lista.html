@@ -1,0 +1,148 @@
+<ion-view style="" id="page3" title="Lista">
+    <ion-content class="has-header" padding="true">
+	<datalist id="aruk">
+<option value="Wrap"></option>
+<option value="bor"></option>
+<option value="dinnye"></option>
+<option value="paradicsom"></option>
+<option value="Tea"></option>
+<option value="Taco"></option>
+<option value="szálami"></option>
+<option value="édesítőszer"></option>
+<option value="édes krumpli"></option>
+<option value="Sushi"></option>
+<option value="kockacukor"></option>
+<option value="cukor"></option>
+<option value="eper"></option>
+<option value="Steak"></option>
+<option value="spagetti"></option>
+<option value="sója"></option>
+<option value="szóda"></option>
+<option value="kagyló"></option>
+<option value="bárány"></option>
+<option value="szezám"></option>
+<option value="liszt"></option>
+<option value="málna"></option>
+<option value="bárány borda"></option>
+<option value="garnéla"></option>
+<option value="krumpli"></option>
+<option value="gránátalma"></option>
+<option value="szílva"></option>
+<option value="Pizza"></option>
+<option value="ananász"></option>
+<option value="disznó"></option>
+<option value="cukorborsó"></option>
+<option value="körte"></option>
+<option value="mogyoró"></option>
+<option value="paradicsom"></option>
+<option value="paprika"></option>
+<option value="Pancake"></option>
+<option value="hagyma"></option>
+<option value="oliva olaj"></option>
+<option value="polip"></option>
+<option value="makk"></option>
+<option value="tészta"></option>
+<option value="Nachos"></option>
+<option value="gomba"></option>
+<option value="tej"></option>
+<option value="dinnye"></option>
+<option value="Macaron"></option>
+<option value="saláta"></option>
+<option value="Kiwi"></option>
+<option value="Kebab"></option>
+<option value="Hot Dog"></option>
+<option value="forró csokoládé"></option>
+<option value="ló"></option>
+<option value="komló"></option>
+<option value="méz"></option>
+<option value="mogyoró"></option>
+<option value="Hamburger"></option>
+<option value="szőllő"></option>
+<option value="fokhagyma"></option>
+<option value="sültkrumpli"></option>
+<option value="hal"></option>
+<option value="filézett hal"></option>
+<option value="tojás"></option>
+<option value="padlizsán"></option>
+<option value="Durian"></option>
+<option value="kacsa"></option>
+<option value="Dragon Fruit"></option>
+<option value="fánk"></option>
+<option value="Dolmades"></option>
+<option value="Dim Sum"></option>
+<option value="Cupcake"></option>
+<option value="uborka"></option>
+<option value="rák"></option>
+<option value="tehén"></option>
+<option value="vattacukor"></option>
+<option value="kukorica"></option>
+<option value="Cookies"></option>
+<option value="kókusz"></option>
+<option value="Citrus"></option>
+<option value="fahéjas csiga"></option>
+<option value="Chili "></option>
+<option value="tyúk"></option>
+<option value="meggy"></option>
+<option value="sajt"></option>
+<option value="zeller"></option>
+<option value="sárgarépa"></option>
+<option value="kávé"></option>
+<option value="káposzta"></option>
+<option value="bika"></option>
+<option value="brokkoli"></option>
+<option value="kenyér"></option>
+<option value="szülinapi torta"></option>
+<option value="Bento"></option>
+<option value="cékla"></option>
+<option value="sör"></option>
+<option value="perec"></option>
+<option value="banán Split"></option>
+<option value="banán"></option>
+<option value="Bacon"></option>
+<option value="Avocado"></option>
+<option value="spárga"></option>
+<option value="alma"></option>
+<option value="alap"></option>
+  </datalist>
+        <form class="list" id="lista-form2">
+            <div id="lista-container1">
+                <form class="list" id="lista-form3">
+                    <label name="iteName" id="lista-input2" class="item item-input">
+                        <span class="input-label">Új elem</span>
+                        <input placeholder="pl paradicsom" id="nev" type="text" required="required" list="aruk"></input>
+                     
+                    </label>
+					 <label name="iteName" id="lista-input3" class="item item-input" required="required">
+                        <span class="input-label">Mennyiség</span>
+                        <input placeholder="1" id="db" type="text"></input>
+                     
+                    </label>
+                    <label name="menny" id="lista-select1" class="item item-select">
+                        <span class="input-label">Kiszerelés</span>
+                        <select id="selected">
+                            <option>kg</option>
+                            <option>csomag</option>
+                            <option>liter</option>
+                            <option>dkg</option>
+                            <option>db</option>
+                            <option>doboz</option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+        </form>
+		<div id="lista-button-bar1" class="button-bar">
+		<button id="lista-button4" class="button button-energized  button-block" onclick="felvitel()">Felvitel</button>
+        <button id="lista-button5" class="button button-balanced  button-block" onclick="mentes()">Mentés</button>
+ 
+			</div>
+		<div id="lista" clas="card" style="display:none;">
+	
+       <table calss="table table-bordered" style="width:100%">
+       </table>
+	
+		</div>
+		
+    </ion-content>
+	<div class='error'  id='error' style='display:none'>Ki Kell tölteni a mezőket</div>
+</ion-view>

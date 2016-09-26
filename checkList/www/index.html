@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    
+    
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    
+
+    <style type="text/css">
+	.error {
+    width:200px;
+    height:20px;
+    height:auto;
+    position:absolute;
+    left:50%;
+    margin-left:-100px;
+    bottom:10px;
+    background-color: #383838;
+    color: #F0F0F0;
+    font-family: Calibri;
+    font-size: 20px;
+    padding:10px;
+    text-align:center;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+	  #padding
+{
+	background-color:#ebebe0;
+}
+#buyed
+{
+	background-color:#33cd5f;
+}
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    
+     
+    <script src="js/directives.js"></script>
+     
+    <script src="js/services.js"></script>
+    
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div style="">
+    <div style="">
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button></ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view  id="itemek" onload="listaz()"></ion-nav-view>
+		
+    </div>
+</div>
+
+  </body>
+</html>
+<script type="text/javascript">
+var j=0;
+var elemek=new Array();
+function setListName()
+{
+var name=document.getElementById("bevitel").value;
+if(name.length>0)
+{
+document.cookie="nameOfList="+name;
+window.location.href = "#/page3";
+}
+else
+{
+	document.getElementById('error').style.display="";
+	var delay=3000;
+	setTimeout(function() {
+  document.getElementById('error').style.display="none";
+	}, delay);
+}
+}
+
+function felvitel()
+{
+localStorage.setItem("mutat","0");
+var mit=document.getElementById("nev").value;
+var mennyit=document.getElementById("db").value;
+var kiszereles=document.getElementById("selected").value;
+if(mit.length>0 && mennyit.length>0)
+{
+var avatar=getAru(mit);
+var ttr=document.createElement('tr');
+ttr.id="padding";
+var ttd0=document.createElement('td');
+var ttd1=document.createElement('td');
+var ttd2=document.createElement('td');
+var ttd3=document.createElement('td');
+   ttr.id="element"+j;
+var img = document.createElement('img');
+img.src="img/"+avatar; 
+var modGomb=document.createElement("button");
+var delGomb=document.createElement("button");
+modGomb.setAttribute("class","button button-balanced");
+modGomb.id="modGomb"+j;
+delGomb.id="delGomb"+j;
+delGomb.setAttribute("class","button button-assertive ");
+modGomb.appendChild(document.createTextNode("Megvéve"));
+delGomb.appendChild(document.createTextNode("Törlés"));
+var i=document.createElement('i');
+i.setAttribute("class","icon ion-trash-a");
+delGomb.appendChild(i);
+var i=document.createElement('i');
+i.setAttribute("class","ion-checkmark");
+modGomb.appendChild(i);
+delGomb.setAttribute('onclick','Torles('+j+')');
+modGomb.setAttribute('onclick','Megveve('+j+')');
+
+	var ionlbl = document.createElement('ion-label');
+	ionlbl.innerHTML = mennyit+" "+kiszereles+" "+mit;
+	ionlbl.style.fontSize="xx-large";
+	elemek.push(mennyit+" "+kiszereles+" "+mit);
+	ttr.appendChild(ttd0);
+	ttr.appendChild(ttd1);
+	ttr.appendChild(ttd2);
+	ttr.appendChild(ttd3);
+	ttd0.appendChild(img);
+	ttd1.appendChild(ionlbl);
+	ttd2.appendChild(modGomb);
+	ttd3.appendChild(delGomb);
+	//ionitem.appendChild(ionoptionbutton1);
+	//ionitem.appendChild(ionoptionbutton2);	
+	document.getElementById('lista').firstElementChild.appendChild(ttr);
+	document.getElementById('lista').style.display="";
+	}
+	else
+	{
+	document.getElementById('error').style.display="";
+	var delay=3000;
+	setTimeout(function() {
+  document.getElementById('error').style.display="none";
+	}, delay);
+	
+	}
+	//console.log(j);
+	j++;
+	
+}
+function getAru(mit)
+{
+
+var nev;
+switch(mit) {
+case "Wrap":
+nev="Wrap.png";break;
+case "bor":
+nev="Wine Bottle.png";break;
+case "dinnye":
+nev="Watermelon.png";break;
+case "paradicsom":
+nev="Tomato.png";break;
+case "Tea":
+nev="Tea.png";break;
+case "Taco":
+nev="Taco.png";break;
+case "szálami":
+nev="szalami.png";break;
+case "édesítőszer":
+nev="Sweetener.png";break;
+case "édes krumpli":
+nev="Sweet Potato.png";break;
+case "Sushi":
+nev="Sushi.png";break;
+case "kockacukor":
+nev="Sugar Cubes.png";break;
+case "cukor":
+nev="Sugar.png";break;
+case "eper":
+nev="Strawberry.png";break;
+case "Steak":
+nev="Steak.png";break;
+case "spagetti":
+nev="Spaghetti.png";break;
+case "sója":
+nev="Soy.png";break;
+case "szóda":
+nev="Soda Bottle.png";break;
+case "kagyló":
+nev="Shellfish.png";break;
+case "bárány":
+nev="Sheep.png";break;
+case "szezám":
+nev="Sesame.png";break;
+case "liszt":
+nev="Sack of Flour.png";break;
+case "málna":
+nev="Raspberry.png";break;
+case "bárány borda":
+nev="Rack of Lamb.png";break;
+case "garnéla":
+nev="Prawn.png";break;
+case "krumpli":
+nev="Potato.png";break;
+case "gránátalma":
+nev="Pomegranate.png";break;
+case "szílva":
+nev="Plum.png";break;
+case "Pizza":
+nev="Pizza.png";break;
+case "ananász":
+nev="Pineapple.png";break;
+case "disznó":
+nev="Pig.png";break;
+case "cukorborsó":
+nev="Peas.png";break;
+case "körte":
+nev="Pear.png";break;
+case "mogyoró":
+nev="Peanuts.png";break;
+case "paradicsom":
+nev="paradicsom.png";break;
+case "paprika":
+nev="paprika.png";break;
+case "paprika":
+nev="Pancake.png";break;
+case "hagyma":
+nev="Onion.png";break;
+case "oliva olaj":
+nev="Olive Oil.png";break;
+case "polip":
+nev="Octopus.png";break;
+case "makk":
+nev="Nut.png";break;
+case "tészta":
+nev="Noodles.png";break;
+case "Nachos":
+nev="Nachos.png";break;
+case "gomba":
+nev="Mushroom.png";break;
+case "tej":
+nev="Milk.png";break;
+case "dinnye":
+nev="Melon.png";break;
+case "Macaron":
+nev="Macaron.png";break;
+case "saláta":
+nev="Lettuce.png";break;
+case "Kiwi":
+nev="Kiwi.png";break;
+case "Kebab":
+nev="Kebab.png";break;
+case "Hot Dog":
+nev="Hot Dog.png";break;
+case "forró csokoládé":
+nev="Hot Chocolate.png";break;
+case "ló":
+nev="Horse.png";break;
+case "komló":
+nev="Hops.png";break;
+case "méz":
+nev="Honey.png";break;
+case "mogyoró":
+nev="Hazelnut.png";break;
+case "Hamburger":
+nev="Hamburger.png";break;
+case "szőllő":
+nev="Grapes.png";break;
+case "fokhagyma":
+nev="Garlic.png";break;
+case "sültkrumpli":
+nev="French Fries.png";break;
+case "hal":
+nev="Fish.png";break;
+case "filézett hal":
+nev="Filleted Fish.png";break;
+case "tojás":
+nev="Eggs.png";break;
+case "padlizsán":
+nev="Eggplant.png";break;
+case "Durian":
+nev="Durian.png";break;
+case "kacsa":
+nev="Duck.png";break;
+case "Dragon Fruit":
+nev="Dragon Fruit.png";break;
+case "fánk":
+nev="Doughnut.png";break;
+case "Dolmades":
+nev="Dolmades.png";break;
+case "Dim Sum":
+nev="Dim Sum.png";break;
+case "Cupcake":
+nev="Cupcake.png";break;
+case "uborka":
+nev="Cucumber.png";break;
+case "rák":
+nev="Crab.png";break;
+case "tehén":
+nev="Cow.png";break;
+case "vattacukor":
+nev="Cotton Candy.png";break;
+case "kukorica":
+nev="Corn.png";break;
+case "Cookies":
+nev="Cookies.png";break;
+case "kókusz":
+nev="Coconut Cocktail.png";break;
+case "Citrus":
+nev="Citrus.png";break;
+case "fahéjas csiga":
+nev="Cinnamon Roll.png";break;
+case "Chili ":
+nev="Chili Pepper.png";break;
+case "tyúk":
+nev="Chicken.png";break;
+case "meggy":
+nev="Cherry.png";break;
+case "sajt":
+nev="Cheese.png";break;
+case "zeller":
+nev="Celery.png";break;
+case "sárgarépa":
+nev="Carrot.png";break;
+case "kávé":
+nev="Cafe.png";break;
+case "káposzta":
+nev="Cabbage.png";break;
+case "bika":
+nev="Bull.png";break;
+case "brokkoli":
+nev="Broccoli.png";break;
+case "kenyér":
+nev="Bread.png";break;
+case "szülinapi torta":
+nev="Birthday Cake.png";break;
+case "Bento":
+nev="Bento.png";break;
+case "cékla":
+nev="Beet.png";break;
+case "sör":
+nev="Beer.png";break;
+case "perec":
+nev="Bavarian Pretzel.png";break;
+case "banán Split":
+nev="Banana Split.png";break;
+case "banán":
+nev="Banana.png";break;
+case "Bacon":
+nev="Bacon.png";break;
+case "Avocado":
+nev="Avocado.png";break;
+case "spárga":
+nev="Asparagus.png";break;
+case "alma":
+nev="Apple.png";break;
+  
+    default:
+        nev="alap.png";
+}
+return nev;
+}
+function Torles(szam)
+{
+var idk="element"+szam;
+document.getElementById(idk).remove();
+elemek.splice(elemek.indexOf(szam,1));
+}
+function Megveve(szam)
+{
+var idk="element"+szam;
+var idkgomb1="modGomb"+szam;
+var idkgomb2="delGomb"+szam;
+document.getElementById(idk).id="buyed";
+document.getElementById(idkgomb1).style.display="none";
+document.getElementById(idkgomb2).style.display="none";
+
+}
+function mentes()
+{
+localStorage.setItem("mutat","0");
+var myJsonString = JSON.stringify(elemek);
+localStorage.setItem(readCookie('nameOfList'), myJsonString);
+window.location.href = "#/page1";
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+/*function getList()
+{}*/
+function vanez()
+{
+if(localStorage.getItem("mutat")==0) {
+localStorage.setItem("mutat","1");
+localStorage.setItem("mutat1","0");
+document.cookie="nameOfList="+name;
+//console.log(localStorage.length);
+if (localStorage.length>0)
+{
+for(i=0;i<localStorage.length;i++) 
+{
+var list=document.createElement('a');
+list.setAttribute("class","button button-positive button-block");
+list.setAttribute("ui-sref","elist");
+list.setAttribute("href","#/page4?nev="+localStorage.key(i));
+list.setAttribute("id","exist");
+list.appendChild(document.createTextNode(localStorage.key(i)));
+if(localStorage.key(i)!="mutat" ){
+if(localStorage.key(i)!="mutat1"){
+//console.log(list);
+document.getElementById('itemek1').appendChild(list);
+}
+}
+}
+}
+else 
+{
+localStorage.setItem("mutat","0");
+}
+}
+}
+function listaz()
+{
+localStorage.setItem("mutat","0");
+if(localStorage.getItem("mutat1")==0)
+{
+localStorage.setItem("mutat1","1");
+var list = getParameterByName('nev');
+var lista=localStorage.getItem(list);
+var mydata = JSON.parse(lista);
+j=0;
+for(i=0;i<=mydata.length;i++)
+{
+var elem=mydata[i];
+var res = elem.split(" ");
+var mit=res[2];
+var mennyit=res[0];
+var kiszereles=res[1];
+var avatar=getAru(mit);
+var ttr=document.createElement('tr');
+ttr.id="padding";
+var ttd0=document.createElement('td');
+var ttd1=document.createElement('td');
+var ttd2=document.createElement('td');
+   ttr.id="element"+i;
+var img = document.createElement('img');
+img.src="img/"+avatar; 
+var modGomb=document.createElement("button");
+modGomb.setAttribute("class","button button-balanced");
+modGomb.id="modGomb"+i;
+modGomb.appendChild(document.createTextNode("Megvéve"));
+var ik=document.createElement('ik');
+var ik=document.createElement('ik');
+ik.setAttribute("class","ion-checkmark");
+modGomb.appendChild(ik);
+modGomb.setAttribute('onclick','Megveve('+j+')');
+	var ionlbl = document.createElement('ion-label');
+	ionlbl.innerHTML = mennyit+" "+kiszereles+" "+mit;
+	ionlbl.style.fontSize="large";
+	elemek.push(mennyit+" "+kiszereles+" "+mit);
+	ttr.appendChild(ttd0);
+	ttr.appendChild(ttd1);
+	ttr.appendChild(ttd2);
+	ttd0.appendChild(img);
+	ttd1.appendChild(ionlbl);
+	ttd2.appendChild(modGomb);
+	document.getElementById('checkList').firstElementChild.appendChild(ttr);
+	j++;
+}
+}
+}
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+function torollista()
+{
+localStorage.setItem("mutat","0");
+var list = getParameterByName('nev');
+localStorage.removeItem(list);
+window.location.href = "#/page1";
+location.reload(); 
+}
+</script>
